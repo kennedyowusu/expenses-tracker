@@ -3,7 +3,7 @@ import React from 'react'
 const AccountSummary = ({ profile }) => {
   return (
     <>
-      {profile.accounts.length > 0 ? (
+      {profile?.accounts?.length > 0 ? (
         <section className='py-20'>
           <h1 style={{ textAlign: 'center' }}>Account Summary</h1>
           <div className='container mx-auto px-4'>

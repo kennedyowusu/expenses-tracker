@@ -5,7 +5,7 @@ const AccountList = ({ profile }) => {
 
   return (
     <>
-      {profile.accounts.length > 0 ? (
+      {profile?.accounts?.length > 0 ? (
         <section
           className='py-24 bg-white'
           style={{
@@ -77,14 +77,14 @@ const AccountList = ({ profile }) => {
           </div>
         </section>
       ) : (
-       <div style={{ display: "flex", width: '100%', alignItems: 'center', justifyContent: 'center',  }}>
-         <Link
-              to={'/add-account'}
-              className='inline-flex text-center  my-8 items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-            >
-              Add New Account
-            </Link>
-       </div>
+        <div style={{ display: "flex", width: '100%', alignItems: 'center', justifyContent: 'center',  }}>
+          <Link
+                to={'/add-account'}
+                className='inline-flex text-center  my-8 items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+              >
+                Add New Account
+              </Link>
+        </div>
       )}
     </>
   )
