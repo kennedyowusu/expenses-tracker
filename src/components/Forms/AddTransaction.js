@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { createTransactionAction } from "../../redux/slice/transactions/transactionSlice";
 
 const AddTransaction = () => {
@@ -17,7 +17,7 @@ const AddTransaction = () => {
     notes: "",
   });
   //---Destructuring---
-  const { name, amount, transactionType, date, category, notes } = transaction;
+  const { name, amount, transactionType, category, notes } = transaction;
   //---onchange handler----
   const onChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
@@ -112,16 +112,6 @@ const AddTransaction = () => {
             >
               Create Transaction
             </button>
-
-            {/* <p className="font-medium">
-              <Link
-                to={"/account"}
-                className="text-indigo-600 hover:text-indigo-700"
-                href="#"
-              >
-                Back To Account
-              </Link>
-            </p> */}
           </form>
         </div>
       </div>
