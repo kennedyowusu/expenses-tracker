@@ -16,8 +16,10 @@ const AddTransaction = () => {
     category: "",
     notes: "",
   });
+
   //---Destructuring---
   const { name, amount, transactionType, category, notes } = transaction;
+
   //---onchange handler----
   const onChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });

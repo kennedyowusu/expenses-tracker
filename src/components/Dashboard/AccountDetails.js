@@ -6,16 +6,20 @@ import { useParams } from 'react-router-dom'
 import { getSingleAccountAction } from '../../redux/slice/account/accountSlice'
 
 const AccountDetails = () => {
+
   //get ID
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSingleAccountAction(id));
   }, [dispatch, id]);
+
   //get data from store
   const { account, error, loading } = useSelector((state) => state?.accounts);
+
   //get all transactions
   const transactions = account?.data?.transactions;
+
   //calc total income
   const totalIncome = transactions
     ?.filter((transaction) => transaction.transactionType === "Income")
@@ -29,10 +33,9 @@ const AccountDetails = () => {
     .reduce((acc, curr) => {
       return acc + curr.amount;
     }, 0);
+
   //total balance
   const totalBalance = totalIncome - totalExpenses;
-
-  console.log(totalBalance);
 
   return (
     <>
