@@ -18,14 +18,8 @@ const AccountDetails = () => {
 
   return (
     <>
-      {/* Account Summary */}
-
-      {loading ? (
-        <h1 style={{ textAlign: 'center' }}>Loading...</h1>
-      ) : error ? (
-        <h1 style={{ textAlign: 'center', color: 'red' }}>{error}</h1>
-      ) : (
-        <>
+      {
+        loading ? (<h2>Loading...</h2>) : error ? (<h2>{error}</h2>) : (
           <section
             className='py-20 xl:pt-24 xl:pb-32 bg-white'
             style={{
@@ -96,10 +90,17 @@ const AccountDetails = () => {
               </div>
             </div>
           </section>
-        </>
-      )}
+        )
 
-      <TransactionList />
+        }
+
+      {
+        account?.data?.transactions?.length <= 0 ? (<h2
+          style={{ textAlign: 'center', color: 'red' } }
+        >No Transactions Found</h2>) : (
+          <TransactionList transactions={account?.data?.transactions} />
+        )
+      }
     </>
   )
 }

@@ -64,7 +64,7 @@ export const getSingleAccountsAction = createAsyncThunk(
 
 // Create a slice
 const accountSlice = createSlice({
-  name: 'account',
+  name: 'accounts',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
