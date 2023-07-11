@@ -42,7 +42,7 @@ export const createAccountAction = createAsyncThunk(
   }
 )
 
-export const getSingleAccountsAction = createAsyncThunk(
+export const getSingleAccountAction = createAsyncThunk(
   'account/getSingle',
   async (id, { rejectWithValue, getState, dispatch }) => {
     try {
@@ -83,15 +83,15 @@ const accountSlice = createSlice({
       state.account = null
     })
 
-    builder.addCase(getSingleAccountsAction.pending, (state) => {
+    builder.addCase(getSingleAccountAction.pending, (state) => {
       state.loading = true
     })
-    builder.addCase(getSingleAccountsAction.fulfilled, (state, action) => {
+    builder.addCase(getSingleAccountAction.fulfilled, (state, action) => {
       state.loading = false
       state.success = true
       state.account = action.payload
     })
-    builder.addCase(getSingleAccountsAction.rejected, (state, action) => {
+    builder.addCase(getSingleAccountAction.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
       state.success = false
