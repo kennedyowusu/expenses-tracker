@@ -18,17 +18,42 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+
         <Route path="/dashboard" element={
           <AuthenticatedRoute>
             <MainDashBoard />
           </AuthenticatedRoute>
         } />
-        <Route path="/account" element={<AccountDetails />} />
-        <Route path="/account/:id" element={<AccountDetails />} />
-        <Route path="/add-transaction/:id" element={<AddTransaction />} />
-        <Route path="/edit-transaction/:id" element={<EditTransaction />} />
-        <Route path="/add-account" element={<AddAccount />} />
-        <Route path="/edit-account/:id" element={<EditAccount />} />
+
+        <Route path="/account/:id" element={
+          <AuthenticatedRoute>
+            <AccountDetails />
+          </AuthenticatedRoute>
+        } />
+
+        <Route path="/add-transaction/:id" element={
+          <AuthenticatedRoute>
+            <AddTransaction />
+          </AuthenticatedRoute>
+        } />
+
+        <Route path="/edit-transaction/:id" element={<AuthenticatedRoute>
+          <EditTransaction />
+          </AuthenticatedRoute>
+        } />
+
+        <Route path="/add-account" element={
+          <AuthenticatedRoute>
+            <AddAccount />
+          </AuthenticatedRoute>
+        } />
+
+        <Route path="/edit-account/:id" element={
+          <AuthenticatedRoute>
+            <EditAccount />
+          </AuthenticatedRoute>
+        } />
+
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
