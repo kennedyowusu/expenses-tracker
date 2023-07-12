@@ -82,7 +82,7 @@ const TransactionList = ({ transactions }) => {
                         {new Date(transaction?.createdAt).toLocaleDateString()}
                       </th>
                       <Link
-                        to={'/edit-transaction/8'}
+                        to={`/edit-transaction/${transaction._id}`}
                         className='whitespace-nowrap cursor-pointer px-4 bg-white text-sm font-medium text-blue-500 text-center'
                       >
                         EDIT

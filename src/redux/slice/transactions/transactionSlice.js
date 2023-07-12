@@ -83,7 +83,8 @@ export const updateTransactionAction = createAsyncThunk(
     }
   }
 );
-// fetch transaction
+
+// fetch single transaction
 export const getTransactionAction = createAsyncThunk(
   "transaction/details",
   async (id, { rejectWithValue, getState, dispatch }) => {
