@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BASE_URL } from '../../../utils/baseUrl'
 
 const initialState = {
-  account: {},
+  account: null,
   accounts: [],
   loading: false,
   error: null,
