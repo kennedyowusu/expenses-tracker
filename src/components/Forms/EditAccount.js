@@ -1,16 +1,31 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getSingleAccountAction, updateAccountAction } from "../../redux/slice/account/accountSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const EditAccount = () => {
+
+  const { account, loading, error, isUpdated, } = useSelector((state) =>state?.accounts);
+
   const [transaction, setTransaction] = useState({
-    title: "",
-    initialBalance: "",
-    transactionType: "",
-    notes: "",
-    accountType: "",
+    name: account?.data?.name,
+    initialBalance: account?.data?.initialBalance,
+    transactionType: account?.data?.transactionType,
+    notes: account?.data?.notes,
+    accountType: account?.data?.accountType,
   });
+
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getSingleAccountAction(id))
+  }, [dispatch, id])
+
   //---Destructuring---
-  const { title, initialBalance, accountType, notes } = transaction;
+  const { name, initialBalance, accountType, notes } = transaction;
   //---onchange handler----
   const onChange = (e) => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
@@ -19,7 +34,7 @@ const EditAccount = () => {
   //---onsubmit handler----
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(transaction);
+    dispatch(updateAccountAction({...transaction, id}))
   };
   return (
     <section className="py-16 xl:pb-56 bg-white overflow-hidden">
@@ -29,18 +44,18 @@ const EditAccount = () => {
             Edit Account
           </h2>
           <p className="mb-12 font-medium text-lg text-gray-600 leading-normal">
-            You are editing....
+            You are editing { account?.data?.name }
           </p>
           <form onSubmit={onSubmit}>
             <label className="block mb-5">
               <input
-                value={title}
+                value={name}
                 onChange={onChange}
-                name="title"
+                name="name"
                 className="px-4 py-3.5 w-full text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-gray-300 rounded-lg focus:ring focus:ring-indigo-300"
                 id="signUpInput2-1"
                 type="text"
-                placeholder="Enter Title"
+                placeholder="Enter Name"
               />
             </label>
             <label className="block mb-5">
@@ -67,7 +82,6 @@ const EditAccount = () => {
                 <option value="Investment">Investment</option>
                 <option value="Checking">Checking</option>
                 <option value="Credit Card">Credit Card</option>
-                <option value="Builing">Builing</option>
                 <option value="School">School</option>
                 <option value="Project">Project</option>
                 <option value="Utilities">Utilities</option>
@@ -78,7 +92,6 @@ const EditAccount = () => {
                 <option value="Loan">Loan</option>
                 <option value="Cash Flow">Cash Flow</option>
                 <option value="Education">Education</option>
-                <option value="Uncategorized">Uncategorized</option>
               </select>
             </label>
 
@@ -99,13 +112,13 @@ const EditAccount = () => {
               type="submit"
               className="mb-8 py-4 px-9 w-full text-white font-semibold border border-indigo-700 rounded-xl shadow-4xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200"
             >
-              Create Account
+              Update { account?.data?.name} Account
             </button>
-            <Link to={"/account/8"} className="font-medium">
+            {/* <Link to={"/account/8"} className="font-medium">
               <a className="text-indigo-600 hover:text-indigo-700" href="#">
                 Back To Account
               </a>
-            </Link>
+            </Link> */}
           </form>
         </div>
       </div>

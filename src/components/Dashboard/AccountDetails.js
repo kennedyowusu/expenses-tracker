@@ -63,11 +63,14 @@ const AccountDetails = () => {
             <p className=" mx-auto mb-8 text-lg md:text-xl text-coolGray-500 font-medium max-w-4xl">
               {account?.data?.notes}
             </p>
+
+            {/* Update Account Button */}
             <Link
               to={`/edit-account/${account?.data?._id}`}
               className="inline-flex text-center  mb-8 items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
               Edit Account
             </Link>
+
             <div className="flex flex-wrap justify-center -mx-4">
               <div className="w-full md:w-1/3 lg:w-1/4 px-4 mb-8 lg:mb-0">
                 <h2 className="mb-2 text-4xl md:text-5xl text-red-600 font-bold tracking-tighter">
